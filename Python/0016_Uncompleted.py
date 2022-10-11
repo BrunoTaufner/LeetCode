@@ -1,7 +1,7 @@
 class Solution(object):
     @staticmethod
     def threeSumClosest(nums: list[int], target: int) -> int:
-        closest_sum = 1234949349382498234923849328493284982918219
+        closest_sum = 1234949349382498
         i = 0
         while i < len(nums):
             somatoria = nums[i]
