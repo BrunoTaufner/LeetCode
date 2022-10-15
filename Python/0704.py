@@ -1,17 +1,19 @@
 def binarySearch(nums, target, left, right):
-    middle = int(right + left) / 2
+    middle = int((right + left) / 2)
     if nums[middle] == target:
         return middle
-    if nums[middle] > target:
-        
-    binarySearch(nums, target, None, None)
+    elif left + 1 == right:
+        return -1
+    elif nums[middle] > target:
+        return binarySearch(nums, target, left, middle)
+    else:
+        return binarySearch(nums, target, middle, right)
 
 
 class Solution:
     @staticmethod
     def search(nums: list[int], target: int) -> int:
+        num = binarySearch(nums, target, 0, len(nums))
+        return num
 
-        binarySearch(nums, target, 0, len(nums))
-        return 0
-
-print(Solution().search([-1,0,3,5,9,12]))
+print(Solution().search([5], 5))
