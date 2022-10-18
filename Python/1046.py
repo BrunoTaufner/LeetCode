@@ -1,27 +1,31 @@
 class Solution:
-    def lastStoneWeight(self, stones: list[int]) -> int:
-        stones.sort(reverse=True)
-        x, y = -1, -1
-        i = 0
-        while i < len(stones):
+    @staticmethod
+    def lastStoneWeight(stones: list[int]) -> int:
 
-            print(f'{i}ª stone: {stones[i]}')
-            if stones[i] > x:
-                x = i
-            if stones[i] < x:
-                del stones[x]
-                del stones[y - 1]
-
-
-            # elif stones[i] == stones[j]:
-            #     print(stones)
-            #     del stones[i]
-            #     del stones[j - 1]
-            #     print(stones)
-            #     i -= 2
-            #     j -= 1
-            i += 1
-
-        return i
-
-print(Solution().lastStoneWeight([2, 7, 4, 1, 8, 1]))
+        while len(stones) > 1:
+            x, y = 0, 1
+            i = 0
+            while i < len(stones):
+                if stones[x] < stones[i] and stones[x] <= stones[y] and i != y:
+                    x = i
+                elif stones[y] < stones[i] and x != i:
+                    y = i
+                i += 1
+            if stones[x] != stones[y]:
+                sub = abs(stones[x] - stones[y])
+                if x < y:
+                    del stones[y]
+                    stones[x] = sub
+                else:
+                    del stones[x]
+                    stones[y] = sub
+            else:
+                if x < y:
+                    del stones[y]
+                    del stones[x]
+                else:
+                    del stones[x]
+                    del stones[y]
+        if len(stones) == 0:
+            return 0
+        return stones[0]
