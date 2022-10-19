@@ -5,7 +5,7 @@ class Solution:
         self.sum = 0
 
     def paths(self, x: int, y: int):
-        if x == self.m - 1 and y == self.n:
+        if x == self.m - 1 and y == self.n - 1:
             self.sum += 1
         if x + 1 < self.m:
             self.paths(x + 1, y)
