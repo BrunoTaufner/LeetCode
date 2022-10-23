@@ -3,9 +3,9 @@ class Solution:
     def myAtoi(s: str) -> int:
         num = ''
         for c in s:
-            if len(num) > 0 and 48 >= ord(c) >= 57:
+            if (ord(c) < 48 or ord(c) > 57) and ((len(num) < 1 and c != ' ' and c != '-' and c != '+') or len(num) >= 1):
                 break
-            if 48 <= ord(c) <= 57 or c == '-':
+            if 48 <= ord(c) <= 57 or c == '-' or c == '+':
                 num += c
         try:
             num = int(num)
@@ -17,4 +17,4 @@ class Solution:
             return -2 ** 31
         return num
 
-print(Solution().myAtoi(' +0 123'))
+print(Solution().myAtoi('     +-42'))
