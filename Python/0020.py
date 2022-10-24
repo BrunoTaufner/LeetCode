@@ -1,8 +1,8 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        pilha = []
         if len(s) % 2 != 0:
             return False
+        pilha = []
         for c in s:
             try:
                 if c == '(' or c == '[' or c == '{':
